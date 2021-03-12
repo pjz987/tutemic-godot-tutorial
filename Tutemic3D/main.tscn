@@ -1,7 +1,15 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://player.gd" type="Script" id=1]
 [ext_resource path="res://fantasy-town/stallRed.glb" type="PackedScene" id=2]
+[ext_resource path="res://food-kit/apple.glb" type="PackedScene" id=3]
+[ext_resource path="res://blocky-characters/Models/Non-rigged/glTF/advancedCharacter.gltf" type="PackedScene" id=4]
+[ext_resource path="res://food-kit/beet.glb" type="PackedScene" id=5]
+[ext_resource path="res://blocky-characters/Skins/Advanced/skin_adventurer.png" type="Texture" id=6]
+[ext_resource path="res://blocky-characters/Faces/face_adventurer.png" type="Texture" id=7]
+[ext_resource path="res://PoetsenOne-Regular.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://dialogue_manager.gd" type="Script" id=9]
+[ext_resource path="res://Dialogues/intro.tres" type="Resource" id=10]
 
 [sub_resource type="PlaneMesh" id=1]
 size = Vector2( 10, 10 )
@@ -9,14 +17,21 @@ size = Vector2( 10, 10 )
 [sub_resource type="CubeMesh" id=2]
 size = Vector3( 1, 1, 1 )
 
-[sub_resource type="ConcavePolygonShape" id=5]
+[sub_resource type="ConcavePolygonShape" id=3]
 data = PoolVector3Array( -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5 )
 
-[sub_resource type="CapsuleShape" id=3]
+[sub_resource type="CapsuleShape" id=4]
 radius = 0.33
 
-[sub_resource type="CapsuleMesh" id=4]
+[sub_resource type="CapsuleMesh" id=5]
 radius = 0.33
+
+[sub_resource type="DynamicFont" id=7]
+size = 20
+font_data = ExtResource( 8 )
+
+[sub_resource type="SpatialMaterial" id=6]
+albedo_texture = ExtResource( 6 )
 
 [node name="Main" type="Spatial"]
 
@@ -25,30 +40,31 @@ mesh = SubResource( 1 )
 material/0 = null
 
 [node name="ComparisonCube" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0 )
 mesh = SubResource( 2 )
 material/0 = null
 
 [node name="StaticBody" type="StaticBody" parent="ComparisonCube"]
 
 [node name="CollisionShape" type="CollisionShape" parent="ComparisonCube/StaticBody"]
-shape = SubResource( 5 )
+shape = SubResource( 3 )
 
 [node name="Player" type="KinematicBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0.9 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1, 0.8, 0.9 )
 script = ExtResource( 1 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Player"]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 0, 0 )
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Player"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
-mesh = SubResource( 4 )
+mesh = SubResource( 5 )
 material/0 = null
 
 [node name="Camera" type="Camera" parent="Player"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.426568, 0 )
+current = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -65,5 +81,83 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="DialogueUI" type="Control" parent="CanvasLayer"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -40.0
+margin_right = 40.0
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+_dialog_text = NodePath("TextBackground/DialogText")
+_avatar = NodePath("Avatar")
+_current_dialogue = ExtResource( 10 )
+
+[node name="Avatar" type="TextureRect" parent="CanvasLayer/DialogueUI"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -128.0
+margin_right = 128.0
+texture = ExtResource( 7 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextBackground" type="ColorRect" parent="CanvasLayer/DialogueUI"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 128.0
+margin_top = -85.0
+margin_right = 828.0
+color = Color( 0.768627, 0.768627, 0.768627, 1 )
+
+[node name="DialogText" type="Label" parent="CanvasLayer/DialogueUI/TextBackground"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_top = 15.0
+margin_right = -15.0
+margin_bottom = -15.0
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "sample dialogue text
+and shit"
+valign = 1
+
 [node name="stallRed" parent="." instance=ExtResource( 2 )]
 transform = Transform( 2.25, 0, 0, 0, 2.25, 0, 0, 0, 2.25, 1.93871, 1.19209e-07, 1.70691 )
+
+[node name="apple" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.51471, 0.822375, 1.20107 )
+
+[node name="beet" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.64824, 0.822375, 2.10056 )
+
+[node name="advancedCharacter" parent="." instance=ExtResource( 4 )]
+transform = Transform( 0.0551384, 0, -0.0834252, 0, 0.1, 0, 0.0834252, 0, 0.0551384, 1.16239, -0.0173534, -0.164591 )
+
+[node name="Body1" parent="advancedCharacter" index="0"]
+material/0 = SubResource( 6 )
+
+[node name="Head1" parent="advancedCharacter" index="1"]
+material/0 = SubResource( 6 )
+
+[node name="ArmLeft1" parent="advancedCharacter" index="2"]
+material/0 = SubResource( 6 )
+
+[node name="ArmRight1" parent="advancedCharacter" index="3"]
+material/0 = SubResource( 6 )
+
+[node name="LegLeft1" parent="advancedCharacter" index="4"]
+material/0 = SubResource( 6 )
+
+[node name="LegRight1" parent="advancedCharacter" index="5"]
+material/0 = SubResource( 6 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.92321, 0.384295, 0, -0.384295, 0.92321, 2.38419e-07, 3.07743, 6.97681 )
+shadow_enabled = true
+
+[editable path="advancedCharacter"]
