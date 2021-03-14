@@ -24,6 +24,10 @@ config/name="Tutemic3D"
 run/main_scene="res://main.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+GameEvents="*res://game_events.gd"
+
 [input]
 
 move_forward={

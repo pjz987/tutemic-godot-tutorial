@@ -1,0 +1,57 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://fantasy-town/stallRed.glb" type="PackedScene" id=1]
+[ext_resource path="res://food-kit/apple.glb" type="PackedScene" id=2]
+[ext_resource path="res://blocky-characters/Models/Non-rigged/glTF/advancedCharacter.gltf" type="PackedScene" id=3]
+[ext_resource path="res://food_quiz.gd" type="Script" id=4]
+[ext_resource path="res://blocky-characters/Skins/Advanced/skin_adventurer.png" type="Texture" id=5]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_texture = ExtResource( 5 )
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 1, 0.265107, 1 )
+
+[node name="FoodQuiz" type="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.93871, 1.19209e-07, 3.62022 )
+script = ExtResource( 4 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="stallRed" parent="." instance=ExtResource( 1 )]
+
+[node name="apple" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.121839, 1.1398, -0.50584 )
+
+[node name="advancedCharacter" parent="." instance=ExtResource( 3 )]
+transform = Transform( 0.0551384, 0, -0.0834252, 0, 0.1, 0, 0.0834252, 0, 0.0551384, -0.77632, -0.0173535, -1.8715 )
+
+[node name="Body1" parent="advancedCharacter" index="0"]
+material/0 = SubResource( 1 )
+
+[node name="Head1" parent="advancedCharacter" index="1"]
+material/0 = SubResource( 1 )
+
+[node name="ArmLeft1" parent="advancedCharacter" index="2"]
+material/0 = SubResource( 1 )
+
+[node name="ArmRight1" parent="advancedCharacter" index="3"]
+material/0 = SubResource( 1 )
+
+[node name="LegLeft1" parent="advancedCharacter" index="4"]
+material/0 = SubResource( 1 )
+
+[node name="LegRight1" parent="advancedCharacter" index="5"]
+material/0 = SubResource( 1 )
+
+[node name="DialogTrigger" type="Area" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="DialogTrigger"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.58549, 0.319548, 0 )
+shape = SubResource( 2 )
+
+[node name="Food" type="Spatial" parent="."]
+[connection signal="body_entered" from="DialogTrigger" to="." method="_on_DialogTrigger_body_entered"]
+
+[editable path="advancedCharacter"]
