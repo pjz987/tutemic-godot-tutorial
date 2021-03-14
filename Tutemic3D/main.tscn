@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://player.gd" type="Script" id=1]
 [ext_resource path="res://food_quiz.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Dialogues/fruit_chat.tres" type="Resource" id=3]
+[ext_resource path="res://food_chooser_ray.gd" type="Script" id=4]
 [ext_resource path="res://food-kit/beet.glb" type="PackedScene" id=5]
 [ext_resource path="res://blocky-characters/Faces/face_adventurer.png" type="Texture" id=7]
 [ext_resource path="res://PoetsenOne-Regular.ttf" type="DynamicFontData" id=8]
@@ -60,6 +61,14 @@ material/0 = null
 [node name="Camera" type="Camera" parent="Player"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.426568, 0 )
 current = true
+
+[node name="FoodChooserRay" type="RayCast" parent="Player/Camera"]
+enabled = true
+exclude_parent = false
+cast_to = Vector3( 0, 0, -2.5 )
+collide_with_areas = true
+collide_with_bodies = false
+script = ExtResource( 4 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

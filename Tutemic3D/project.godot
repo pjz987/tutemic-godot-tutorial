@@ -13,9 +13,15 @@ _global_script_classes=[ {
 "class": "Dialogue",
 "language": "GDScript",
 "path": "res://dialogue.gd"
+}, {
+"base": "Area",
+"class": "Food",
+"language": "GDScript",
+"path": "res://food.gd"
 } ]
 _global_script_class_icons={
-"Dialogue": ""
+"Dialogue": "",
+"Food": ""
 }
 
 [application]

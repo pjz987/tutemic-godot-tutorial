@@ -2,6 +2,9 @@ extends KinematicBody
 
 export var _mouse_sensitivity := 0.08
 export var _move_speed: float = 3
+export var _acceleration: int = 100
+
+var motion: Vector3
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -12,7 +15,7 @@ func _input(event) -> void:
 
 
 func _physics_process(delta) -> void:
-	movement()
+	movement(delta)
 
 
 func aim(event: InputEvent) -> void:
@@ -26,7 +29,7 @@ func aim(event: InputEvent) -> void:
 		$Camera.rotation_degrees.x = clamp(current_tilt, -90, 90)
 
 
-func movement() -> void:
+func movement(delta) -> void:
 	var movement_vector: Vector3
 	var forward_movement: Vector3
 	var sideways_movement: Vector3
@@ -43,5 +46,8 @@ func movement() -> void:
 	
 	movement_vector = forward_movement + sideways_movement
 	movement_vector = movement_vector.normalized()
+	
+#	movement_vector = movement_vector.linear_interpolate(Vector3.ZERO, _acceleration * delta)
+#	motion += movement_vector * delta * _acceleration
 	
 	move_and_slide(movement_vector * _move_speed)
