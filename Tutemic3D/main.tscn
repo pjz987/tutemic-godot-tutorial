@@ -1,14 +1,24 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://player.gd" type="Script" id=1]
 [ext_resource path="res://food_quiz.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Dialogues/fruit_chat.tres" type="Resource" id=3]
 [ext_resource path="res://food_chooser_ray.gd" type="Script" id=4]
 [ext_resource path="res://food-kit/beet.glb" type="PackedScene" id=5]
+[ext_resource path="res://food_label.gd" type="Script" id=6]
 [ext_resource path="res://blocky-characters/Faces/face_adventurer.png" type="Texture" id=7]
 [ext_resource path="res://PoetsenOne-Regular.ttf" type="DynamicFontData" id=8]
 [ext_resource path="res://dialogue_manager.gd" type="Script" id=9]
 [ext_resource path="res://Dialogues/intro.tres" type="Resource" id=10]
+[ext_resource path="res://blocky-characters/Skins/Advanced/skin_womanAlternative.png" type="Texture" id=11]
+[ext_resource path="res://blocky-characters/Skins/Advanced/skin_adventurer.png" type="Texture" id=12]
+[ext_resource path="res://food-kit/donutChocolate.glb" type="PackedScene" id=13]
+[ext_resource path="res://food-kit/donutSprinkles.glb" type="PackedScene" id=14]
+[ext_resource path="res://food-kit/donut.glb" type="PackedScene" id=15]
+[ext_resource path="res://food-kit/apple.glb" type="PackedScene" id=16]
+[ext_resource path="res://food-kit/grapes.glb" type="PackedScene" id=17]
+[ext_resource path="res://food-kit/orange.glb" type="PackedScene" id=18]
+[ext_resource path="res://donut_chat.tres" type="Resource" id=19]
 
 [sub_resource type="PlaneMesh" id=1]
 size = Vector2( 10, 10 )
@@ -28,6 +38,16 @@ radius = 0.33
 [sub_resource type="DynamicFont" id=6]
 size = 20
 font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 20
+font_data = ExtResource( 8 )
+
+[sub_resource type="SpatialMaterial" id=8]
+albedo_texture = ExtResource( 12 )
+
+[sub_resource type="SpatialMaterial" id=9]
+albedo_texture = ExtResource( 11 )
 
 [node name="Main" type="Spatial"]
 
@@ -130,6 +150,19 @@ text = "sample dialogue text
 and shit"
 valign = 1
 
+[node name="FoodLabel" type="Label" parent="CanvasLayer"]
+anchor_right = 1.0
+margin_bottom = 60.0
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "samp"
+align = 1
+valign = 1
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="beet" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.64824, 0.822375, 2.10056 )
 
@@ -140,6 +173,92 @@ shadow_enabled = true
 [node name="FoodQuiz" parent="." instance=ExtResource( 2 )]
 _dialogue = ExtResource( 3 )
 
+[node name="Body1" parent="FoodQuiz/advancedCharacter" index="0"]
+material/0 = SubResource( 8 )
+
+[node name="Head1" parent="FoodQuiz/advancedCharacter" index="1"]
+material/0 = SubResource( 8 )
+
+[node name="ArmLeft1" parent="FoodQuiz/advancedCharacter" index="2"]
+material/0 = SubResource( 8 )
+
+[node name="ArmRight1" parent="FoodQuiz/advancedCharacter" index="3"]
+material/0 = SubResource( 8 )
+
+[node name="LegLeft1" parent="FoodQuiz/advancedCharacter" index="4"]
+material/0 = SubResource( 8 )
+
+[node name="LegRight1" parent="FoodQuiz/advancedCharacter" index="5"]
+material/0 = SubResource( 8 )
+
+[node name="Food" parent="FoodQuiz" index="3"]
+food_name = "apple"
+
+[node name="apple" parent="FoodQuiz/Food" index="2" instance=ExtResource( 16 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0811521, 0 )
+
+[node name="Food2" parent="FoodQuiz" index="4"]
+food_name = "grapes"
+
+[node name="grapes" parent="FoodQuiz/Food2" index="2" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.163993, 0 )
+
+[node name="Food3" parent="FoodQuiz" index="5"]
+food_name = "orange"
+
+[node name="orange" parent="FoodQuiz/Food3" index="2" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0630844, 0 )
+
+[node name="FoodQuiz2" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.343774, 0, 0.939052, 0, 1, 0, -0.939052, 0, 0.343774, -0.545435, 0.0499998, -0.299509 )
+_dialogue = ExtResource( 19 )
+
+[node name="Body1" parent="FoodQuiz2/advancedCharacter" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+material/0 = SubResource( 9 )
+
+[node name="Head1" parent="FoodQuiz2/advancedCharacter" index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+material/0 = SubResource( 9 )
+
+[node name="ArmLeft1" parent="FoodQuiz2/advancedCharacter" index="2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+material/0 = SubResource( 9 )
+
+[node name="ArmRight1" parent="FoodQuiz2/advancedCharacter" index="3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+material/0 = SubResource( 9 )
+
+[node name="LegLeft1" parent="FoodQuiz2/advancedCharacter" index="4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+material/0 = SubResource( 9 )
+
+[node name="LegRight1" parent="FoodQuiz2/advancedCharacter" index="5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+material/0 = SubResource( 9 )
+
+[node name="Food" parent="FoodQuiz2" index="3"]
+food_name = "donut"
+
+[node name="donut" parent="FoodQuiz2/Food" index="2" instance=ExtResource( 15 )]
+transform = Transform( 0.653857, -0.756619, 0, 0.756619, 0.653856, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="Food2" parent="FoodQuiz2" index="4"]
+food_name = "chocolate donut"
+
+[node name="donutChocolate" parent="FoodQuiz2/Food2" index="2" instance=ExtResource( 13 )]
+transform = Transform( 0.653857, -0.756619, 0, 0.756619, 0.653856, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="Food3" parent="FoodQuiz2" index="5"]
+food_name = "donut with sprinkles"
+
+[node name="donutSprinkles" parent="FoodQuiz2/Food3" index="2" instance=ExtResource( 14 )]
+transform = Transform( 0.653857, -0.756619, 0, 0.756619, 0.653856, 0, 0, 0, 1, 0, 0, 0 )
+
 [editable path="FoodQuiz"]
 
 [editable path="FoodQuiz/advancedCharacter"]
+
+[editable path="FoodQuiz2"]
+
+[editable path="FoodQuiz2/advancedCharacter"]
