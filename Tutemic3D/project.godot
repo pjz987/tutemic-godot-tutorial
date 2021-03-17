@@ -18,10 +18,16 @@ _global_script_classes=[ {
 "class": "Food",
 "language": "GDScript",
 "path": "res://food.gd"
+}, {
+"base": "Resource",
+"class": "RuntimeData",
+"language": "GDScript",
+"path": "res://runtime_state.gd"
 } ]
 _global_script_class_icons={
 "Dialogue": "",
-"Food": ""
+"Food": "",
+"RuntimeData": ""
 }
 
 [application]
@@ -33,6 +39,7 @@ config/icon="res://icon.png"
 [autoload]
 
 GameEvents="*res://game_events.gd"
+Enums="*res://enums.gd"
 
 [input]
 

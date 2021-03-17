@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://player.gd" type="Script" id=1]
 [ext_resource path="res://food_quiz.tscn" type="PackedScene" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://food-kit/grapes.glb" type="PackedScene" id=17]
 [ext_resource path="res://food-kit/orange.glb" type="PackedScene" id=18]
 [ext_resource path="res://donut_chat.tres" type="Resource" id=19]
+[ext_resource path="res://runtime_data.tres" type="Resource" id=20]
 
 [sub_resource type="PlaneMesh" id=1]
 size = Vector2( 10, 10 )
@@ -68,6 +69,7 @@ shape = SubResource( 3 )
 [node name="Player" type="KinematicBody" parent="."]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1, 0.8, 2.81331 )
 script = ExtResource( 1 )
+_runtime_data = ExtResource( 20 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Player"]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 0, 0 )
@@ -117,6 +119,7 @@ __meta__ = {
 _dialog_text = NodePath("TextBackground/DialogText")
 _avatar = NodePath("Avatar")
 _current_dialogue = ExtResource( 10 )
+_runtime_data = ExtResource( 20 )
 
 [node name="Avatar" type="TextureRect" parent="CanvasLayer/DialogueUI"]
 anchor_top = 1.0
@@ -214,27 +217,21 @@ transform = Transform( 0.343774, 0, 0.939052, 0, 1, 0, -0.939052, 0, 0.343774, -
 _dialogue = ExtResource( 19 )
 
 [node name="Body1" parent="FoodQuiz2/advancedCharacter" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 material/0 = SubResource( 9 )
 
 [node name="Head1" parent="FoodQuiz2/advancedCharacter" index="1"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 material/0 = SubResource( 9 )
 
 [node name="ArmLeft1" parent="FoodQuiz2/advancedCharacter" index="2"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 material/0 = SubResource( 9 )
 
 [node name="ArmRight1" parent="FoodQuiz2/advancedCharacter" index="3"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 material/0 = SubResource( 9 )
 
 [node name="LegLeft1" parent="FoodQuiz2/advancedCharacter" index="4"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 material/0 = SubResource( 9 )
 
 [node name="LegRight1" parent="FoodQuiz2/advancedCharacter" index="5"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 material/0 = SubResource( 9 )
 
 [node name="Food" parent="FoodQuiz2" index="3"]

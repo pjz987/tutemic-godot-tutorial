@@ -4,6 +4,8 @@ export var _mouse_sensitivity := 0.08
 export var _move_speed: float = 3
 export var _acceleration: int = 100
 
+export (Resource) var _runtime_data = _runtime_data as RuntimeData
+
 var motion: Vector3
 
 func _ready() -> void:
@@ -15,7 +17,8 @@ func _input(event) -> void:
 
 
 func _physics_process(delta) -> void:
-	movement(delta)
+	if _runtime_data.current_gameplay_state == Enums.GameplayState.FREEWALK:
+		movement(delta)
 
 
 func aim(event: InputEvent) -> void:
