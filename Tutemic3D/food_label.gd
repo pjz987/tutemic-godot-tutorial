@@ -7,8 +7,8 @@ func _ready():
 
 func _on_food_hovered(food: Food) -> void:
 	self.text = food.food_name
-	visible = true
+	self.visible = true
 
 
-func _on_food_unhovered(food: Food) -> void:
-	visible = false
+func _on_food_unhovered() -> void:
+	self.visible = false

@@ -13,6 +13,7 @@ func _ready():
 	show_slide()
 	
 	GameEvents.connect("dialog_initiated", self, "_on_dialog_initiated")
+	GameEvents.connect("dialog_finished", self, "_on_dialog_finished")
 
 func _input(event):
 	if Input.is_action_just_pressed("advance_slide"):
@@ -20,7 +21,7 @@ func _input(event):
 			_current_slide_index += 1
 			show_slide()
 		else:
-			_on_dialog_finished()
+			GameEvents.emit_signal("dialog_finished")
 
 
 func show_slide() -> void:
