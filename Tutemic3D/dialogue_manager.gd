@@ -20,7 +20,7 @@ func _input(event):
 		if _current_slide_index < _current_dialogue.dialog_slides.size() - 1:
 			_current_slide_index += 1
 			show_slide()
-		else:
+		elif _runtime_data.current_gameplay_state == Enums.GameplayState.IN_DIALOG:
 			GameEvents.emit_signal("dialog_finished")
 
 

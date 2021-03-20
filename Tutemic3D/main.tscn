@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://player.gd" type="Script" id=1]
 [ext_resource path="res://food_quiz.tscn" type="PackedScene" id=2]
@@ -18,8 +18,12 @@
 [ext_resource path="res://food-kit/apple.glb" type="PackedScene" id=16]
 [ext_resource path="res://food-kit/grapes.glb" type="PackedScene" id=17]
 [ext_resource path="res://food-kit/orange.glb" type="PackedScene" id=18]
-[ext_resource path="res://donut_chat.tres" type="Resource" id=19]
+[ext_resource path="res://Dialogues/donut_chat.tres" type="Resource" id=19]
 [ext_resource path="res://runtime_data.tres" type="Resource" id=20]
+[ext_resource path="res://Dialogues/fruit_incorrect.tres" type="Resource" id=21]
+[ext_resource path="res://Dialogues/donut_correct.tres" type="Resource" id=22]
+[ext_resource path="res://Dialogues/donut_incorrect.tres" type="Resource" id=23]
+[ext_resource path="res://Dialogues/fruit_correct.tres" type="Resource" id=24]
 
 [sub_resource type="PlaneMesh" id=1]
 size = Vector2( 10, 10 )
@@ -174,6 +178,9 @@ shadow_enabled = true
 
 [node name="FoodQuiz" parent="." instance=ExtResource( 2 )]
 _dialogue = ExtResource( 3 )
+_dialogue_correct = ExtResource( 24 )
+_dialogue_incorrect = ExtResource( 21 )
+_correct_food = NodePath("Food")
 
 [node name="Body1" parent="FoodQuiz/advancedCharacter" index="0"]
 material/0 = SubResource( 8 )
@@ -214,6 +221,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0630844, 0 )
 [node name="FoodQuiz2" parent="." instance=ExtResource( 2 )]
 transform = Transform( 0.343774, 0, 0.939052, 0, 1, 0, -0.939052, 0, 0.343774, -0.545435, 0.0499998, -0.299509 )
 _dialogue = ExtResource( 19 )
+_dialogue_correct = ExtResource( 22 )
+_dialogue_incorrect = ExtResource( 23 )
+_correct_food = NodePath("Food2")
 
 [node name="Body1" parent="FoodQuiz2/advancedCharacter" index="0"]
 material/0 = SubResource( 9 )

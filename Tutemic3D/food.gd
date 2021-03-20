@@ -11,6 +11,7 @@ var _mesh: Spatial
 func _ready():
 	GameEvents.connect("food_moused_over", self, "_on_mouse_entered")
 	GameEvents.connect("food_moused_out", self, "_on_mouse_out")
+	GameEvents.connect("food_clicked", self, "_on_mouse_clicked")
 	
 	set_up_reference_to_mesh()
 
@@ -34,3 +35,8 @@ func _on_mouse_entered(food: Food):
 func _on_mouse_out():
 	_is_mouse_over = false
 	$SpotLight.visible = false
+
+
+func _on_mouse_clicked(food: Food):
+	if food == self:
+		get_parent().food_chosen(self)
