@@ -95,6 +95,7 @@ cast_to = Vector3( 0, 0, -2.5 )
 collide_with_areas = true
 collide_with_bodies = false
 script = ExtResource( 4 )
+_runtime_data = ExtResource( 20 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

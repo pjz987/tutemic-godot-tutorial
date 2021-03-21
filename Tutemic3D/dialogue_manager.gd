@@ -21,7 +21,7 @@ func _input(event):
 			_current_slide_index += 1
 			show_slide()
 		elif _runtime_data.current_gameplay_state == Enums.GameplayState.IN_DIALOG:
-			GameEvents.emit_signal("dialog_finished")
+			GameEvents.emit_dialog_finished()
 
 
 func show_slide() -> void:

@@ -39,4 +39,5 @@ func _on_mouse_out():
 
 func _on_mouse_clicked(food: Food):
 	if food == self:
+		self.queue_free()
 		get_parent().food_chosen(self)

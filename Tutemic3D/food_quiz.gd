@@ -7,11 +7,11 @@ export(Resource) var _dialogue_incorrect = _dialogue_incorrect as Dialogue
 export(NodePath) onready var _correct_food = get_node(_correct_food) as Food
 
 func _on_DialogTrigger_body_entered(body):
-	GameEvents.emit_signal("dialog_initiated", _dialogue)
+	GameEvents.emit_dialog_initiated(_dialogue)
 
 
 func food_chosen(food: Food):
 	if food == _correct_food:
-		GameEvents.emit_signal("dialog_initiated", _dialogue_correct)
+		GameEvents.emit_dialog_initiated(_dialogue_correct)
 	else:
-		GameEvents.emit_signal("dialog_initiated", _dialogue_incorrect)
+		GameEvents.emit_dialog_initiated(_dialogue_incorrect)
